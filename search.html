@@ -153,7 +153,19 @@
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  
+  <p class="caption" role="heading"><span class="caption-text">📚 Specs</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="subscriptions/index.html">Subscriptions</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="subscriptions/add-new.html">Add a new subscription</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscriptions/get-all.html">Get all subscriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscriptions/get-single.html">Get a single subscription</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscriptions/update.html">Update a subscription</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscriptions/delete.html">Delete a subscription</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscriptions/status.html">Deletion status endpoint</a></li>
+</ul>
+</li>
+</ul>
+
 </div>
 </div>
 
@@ -238,8 +250,15 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/design-tabs.js"></script>
-    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>const mermaidConfig = {
+    "arrowMarkerAbsolute": false,
+    "fontFamily": "'trebuchet ms', verdana, arial, sans-serif;",
+    "logLevel": "fatal",
+    "securityLevel": "strict",
+    "startOnLoad": true,
+    "theme": "neutral"
+}</script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@latest/dist/mermaid.esm.min.mjs"; mermaid.initialize(mermaidConfig)</script>
     
 <script src="_static/searchtools.js"></script>
 <script src="_static/language_data.js"></script>
