@@ -1,1 +1,0 @@
-# OpenPodcast API specification
