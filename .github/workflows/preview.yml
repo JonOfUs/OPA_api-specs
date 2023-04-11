@@ -43,6 +43,5 @@ jobs:
         uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: docs/_build/html
-          preview-branch: main
-          umbrella-dir: docs
+          umbrella-dir: pr-preview
           action: auto
