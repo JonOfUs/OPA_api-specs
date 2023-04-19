@@ -47,10 +47,11 @@ jobs:
             });
             var fs = require('fs');
             fs.writeFileSync('${{github.workspace}}/pr.zip', Buffer.from(download.data));
-      - run: |
-          unzip pr.zip
-          pr="$(cat ./NR)"
-          echo "pr=$pr" >> $GITHUB_ENV
+      - run: unzip pr.zip
+      
+      # Get PR number from artifact and store it in environment var $pr
+      - name: Extract PR number
+      - run: echo "pr=$(cat ./NR)" >> $GITHUB_ENV
       
       - name: Deploy preview
         uses: peaceiris/actions-gh-pages@v3
@@ -58,4 +59,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./html
           destination_dir: pr-preview/pr-${{ env.pr }}/
-          keep_files: true
