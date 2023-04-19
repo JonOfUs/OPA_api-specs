@@ -49,10 +49,10 @@ jobs:
             fs.writeFileSync('${{github.workspace}}/pr.zip', Buffer.from(download.data));
       - run: |
           unzip pr.zip
-          pr_number = $(cat NR)
+          echo "pr=$(cat NR)" >> $GITHUB_ENV
       
       - name: Deploy preview
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: html
-          target-folder: pr-preview/${{ vars.pr_number }}/
+          target-folder: pr-preview/${{ vars.pr }}/
