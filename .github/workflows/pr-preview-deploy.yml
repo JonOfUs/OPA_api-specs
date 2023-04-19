@@ -65,15 +65,17 @@ jobs:
           
       - name: Get Pages URL and datetime
         run: |
-          pagesurl=$(echo "$GITHUB_REPOSITORY" | sed 's/\//.github.io\//')
-          echo "pagesurl=$pagesurl" >> $GITHUB_ENV
+          org=$(echo "$GITHUB_REPOSITORY" | cut -d "/" -f 1)
+          echo "org=$org" >> $GITHUB_ENV
           echo "datetime=$(date '+%Y-%m-%d %H:%M %Z')" >> $GITHUB_ENV
+          
         shell: bash
 
       - name: Create PR comment
         env:
+          preview-repo: 'OPA_pr-preview'
           preview-branch: 'gh-pages'
-          preview-folder: 'pr-preview/pr-${{ env.pr }}'
+          preview-folder: 'pr-${{ env.pr }}'
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: pr-preview
@@ -81,5 +83,5 @@ jobs:
           message: |
             | PR Preview |
             | :---: |
-            | :rocket: Deployed preview to https://${{ env.pagesurl }}/${{ env.preview-folder }} |
+            | :rocket: Deployed preview to https://${{ env.org }}.github.io/${{ env.preview-repo }}/${{ env.preview-folder }} |
             | on branch [`${{ env.preview-branch }}`](${{ github.server_url }}/${{ github.repository }}/tree/${{ env.preview-branch }}) at ${{ env.datetime }} |
