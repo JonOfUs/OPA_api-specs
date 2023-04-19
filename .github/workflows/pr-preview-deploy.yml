@@ -1,3 +1,6 @@
+# PR deployment splitted into two actions so that PRs of forks can be previewed as well.
+# This workflow will be started on each PR, but it will run on branch "main", so that
+# it has the necessary rights to push to the branch "gh-pages".
 name: Deploy PR preview
 
 on:
