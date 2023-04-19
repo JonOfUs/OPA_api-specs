@@ -3,7 +3,7 @@ base = "docs/"
 publish = "_build/html/"
 environment = { PYTHON_VERSION = "3.11" }
 command = """
-env use
+env use PYTHON_VERSION
 pip install -q poetry
 poetry install
 poetry run make html
