@@ -63,7 +63,8 @@ jobs:
           external_repository: JonOfUs/OPA_pr-preview
           destination_dir: pr-${{ env.pr }}/
           keep_files: true
-          
+      
+      # Inspired from https://github.com/rossjrw/pr-preview-action
       - name: Get Pages URL and datetime
         run: |
           pagesurl=$(echo "$GITHUB_REPOSITORY" | sed 's/\//.github.io\//')
