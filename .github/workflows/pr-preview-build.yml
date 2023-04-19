@@ -1,3 +1,5 @@
+# This workflow will run on each PR - it will build the project
+# and upload as artifacts for the deploy workflow
 name: Build PR preview
 
 on:
