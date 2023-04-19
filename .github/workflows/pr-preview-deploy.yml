@@ -55,11 +55,13 @@ jobs:
           echo "pr=$(cat ./NR)" >> $GITHUB_ENV
       
       - name: Deploy preview
+        env:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./html
-          destination_dir: pr-preview/pr-${{ env.pr }}/
+          external_repository: JonOfUs/OPA_pr-preview
+          destination_dir: pr-${{ env.pr }}/
           keep_files: true
           
       - name: Get Pages URL and datetime
