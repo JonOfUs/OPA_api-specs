@@ -1,7 +1,7 @@
 [build]
 base = "docs/"
 publish = "docs/_build/html/"
-environment = { PYTHON_VERSION = "3.9.16" }
+environment = { PYTHON_VERSION = "3.9" }
 command = """
 pip3 install -q poetry &&
 poetry install &&
