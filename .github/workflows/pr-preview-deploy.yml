@@ -61,3 +61,21 @@ jobs:
           publish_dir: ./html
           destination_dir: pr-preview/pr-${{ env.pr }}/
           keep_files: true
+          
+      - name: Create comment in PR
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: pr-preview
+          number: ${{ env.pr }}
+          message: |
+            PR Preview
+            
+            :---:
+            
+            :rocket: Deployed preview to
+            https://${{ env.pagesurl }}/${{ env.targetdir }}/
+            
+            on branch [`${{ inputs.preview-branch }}`](\
+            ${{ github.server_url }}/${{ github.repository }}\
+            /tree/${{ inputs.preview-branch }})
+            at ${{ env.datetime }}
