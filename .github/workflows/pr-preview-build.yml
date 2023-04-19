@@ -21,7 +21,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  deploy-preview:
+  build-preview:
     runs-on: ubuntu-latest
     steps:
       # Checkout the branch
