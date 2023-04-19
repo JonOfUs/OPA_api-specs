@@ -49,12 +49,13 @@ jobs:
             fs.writeFileSync('${{github.workspace}}/pr.zip', Buffer.from(download.data));
       - run: |
           unzip pr.zip
-          echo "pr=$(cat NR)" >> $GITHUB_ENV
+          pr="$(cat ./NR)"
+          echo "pr=$pr" >> $GITHUB_ENV
       
       - name: Deploy preview
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./html
-          destination_dir: pr-preview/${{ vars.pr }}/
+          destination_dir: pr-preview/pr-${{ vars.pr }}/
           keep_files: true
