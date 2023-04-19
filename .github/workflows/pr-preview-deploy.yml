@@ -1,6 +1,6 @@
-# PR deployment splitted into two actions so that PRs of forks can be previewed as well.
+# PR deployment splitted into two actions so that PRs of forks can be previewed as well
 # This workflow will be started on each PR, but it will run on branch "main", so that
-# it has the necessary rights to push to the branch "gh-pages".
+# it has the necessary rights to access repository secrets
 name: Deploy PR preview
 
 on:
@@ -59,7 +59,7 @@ jobs:
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_dir: ./html
-          external_repository: JonOfUs/OPA_pr-preview
+          external_repository: OpenPodcastAPI/pr-preview
           destination_dir: pr-${{ env.pr }}/
           keep_files: true
         
@@ -74,7 +74,7 @@ jobs:
 
       - name: Create PR comment
         env:
-          preview-repo: 'OPA_pr-preview'
+          preview-repo: 'pr-preview'
           preview-branch: 'gh-pages'
           preview-folder: 'pr-${{ env.pr }}'
         uses: marocchino/sticky-pull-request-comment@v2
