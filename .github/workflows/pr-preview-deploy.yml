@@ -54,11 +54,10 @@ jobs:
           unzip pr.zip
           echo "pr=$(cat ./NR)" >> $GITHUB_ENV
       
-      - name: Deploy preview
-        env:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+      - name: Deploy preview          
         uses: peaceiris/actions-gh-pages@v3
         with:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_dir: ./html
           external_repository: JonOfUs/OPA_pr-preview
           destination_dir: pr-${{ env.pr }}/
