@@ -57,7 +57,7 @@ jobs:
       - name: Deploy preview          
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }} # Generate key with e.g. 'ssh-keygen -t ed25519 -C "OPA GH Actions Deploy Key" -f gh-pages'
           publish_dir: ./html
           external_repository: OpenPodcastAPI/pr-preview
           destination_dir: pr-${{ env.pr }}/
@@ -69,7 +69,6 @@ jobs:
           org=$(echo "$GITHUB_REPOSITORY" | cut -d "/" -f 1)
           echo "org=$org" >> $GITHUB_ENV
           echo "datetime=$(date '+%Y-%m-%d %H:%M %Z')" >> $GITHUB_ENV
-          
         shell: bash
 
       - name: Create PR comment
