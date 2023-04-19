@@ -62,20 +62,23 @@ jobs:
           destination_dir: pr-preview/pr-${{ env.pr }}/
           keep_files: true
           
-      - name: Create comment in PR
+      - name: Get Pages URL and datetime
+        run: |
+          pagesurl=$(echo "$GITHUB_REPOSITORY" | sed 's/\//.github.io\//')
+          echo "pagesurl=$pagesurl" >> $GITHUB_ENV
+          echo "datetime=$(date '+%Y-%m-%d %H:%M %Z')" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Create PR comment
+        env:
+          preview-branch: 'gh-pages'
+          preview-folder: 'pr-preview/pr-${{ env.pr }}'
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: pr-preview
           number: ${{ env.pr }}
           message: |
-            PR Preview
-            
-            :---:
-            
-            :rocket: Deployed preview to
-            https://${{ env.pagesurl }}/${{ env.targetdir }}/
-            
-            on branch [`${{ inputs.preview-branch }}`](\
-            ${{ github.server_url }}/${{ github.repository }}\
-            /tree/${{ inputs.preview-branch }})
-            at ${{ env.datetime }}
+            | PR Preview |
+            | :---: |
+            | :rocket: Deployed preview to https://${{ env.pagesurl }}/${{ env.preview-folder }} |
+            | on branch [`${{ env.preview-branch }}`](${{ github.server_url }}/${{ github.repository }}/tree/${{ env.preview-branch }}) at ${{ env.datetime }} |
