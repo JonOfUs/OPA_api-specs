@@ -57,7 +57,7 @@ jobs:
       - name: Deploy preview          
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }} # Generate key with e.g. 'ssh-keygen -t ed25519 -C "OPA GH Actions Deploy Key" -f gh-pages'
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_dir: ./html
           external_repository: OpenPodcastAPI/pr-preview
           destination_dir: pr-${{ env.pr }}/
