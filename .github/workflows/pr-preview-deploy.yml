@@ -13,9 +13,8 @@ concurrency:
   group: preview-${{ github.ref }}
   cancel-in-progress: false
 
-# Sets permissions of the GITHUB_TOKEN to allow writing to the gh-pages branch and writing a pull request comment
+# Sets permissions of the GITHUB_TOKEN to allow writing a pull request comment
 permissions:
-  contents: write
   pull-requests: write
 
 jobs:
@@ -57,9 +56,11 @@ jobs:
       - name: Deploy preview          
         uses: peaceiris/actions-gh-pages@v3
         with:
+          # Generate key with e.g. 'ssh-keygen -t ed25519 -C "OPA GH Actions Deploy Key" -f gh-pages'
+          # deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }} 
           personal_token: ${{ secrets.PR_DEPLOY_TOKEN }}
           publish_dir: ./html
-          external_repository: OpenPodcastAPI/pr-preview
+          external_repository: OpenPodcastAPI/pr-previews
           destination_dir: pr-${{ env.pr }}/
           keep_files: true
         
@@ -73,7 +74,7 @@ jobs:
 
       - name: Create PR comment
         env:
-          preview-repo: 'pr-preview'
+          preview-repo: 'pr-previews'
           preview-branch: 'gh-pages'
           preview-folder: 'pr-${{ env.pr }}'
         uses: marocchino/sticky-pull-request-comment@v2
@@ -84,4 +85,4 @@ jobs:
             | PR Preview |
             | :---: |
             | :rocket: Deployed preview to https://${{ env.org }}.github.io/${{ env.preview-repo }}/${{ env.preview-folder }} |
-            | on branch [`${{ env.preview-branch }}`](${{ github.server_url }}/${{ github.repository }}/tree/${{ env.preview-branch }}) at ${{ env.datetime }} |
+            | on [`${{ env.preview-repo }}:${{ env.preview-branch }}`](${{ github.server_url }}/${{ env.org }}/${{ env.preview-repo }}/tree/${{ env.preview-branch }}) at ${{ env.datetime }} |
