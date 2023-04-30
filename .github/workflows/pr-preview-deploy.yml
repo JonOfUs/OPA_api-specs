@@ -27,7 +27,7 @@ jobs:
       # Download PR build artifact from last run
       # Taken from: https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
       - name: 'Download artifact'
-        uses: actions/github-script@v3.1.0
+        uses: actions/github-script@v6
         with:
           script: |
             var artifacts = await github.actions.listWorkflowRunArtifacts({
@@ -85,4 +85,4 @@ jobs:
             | PR Preview |
             | :---: |
             | :rocket: Deployed preview to https://${{ env.org }}.github.io/${{ env.preview-repo }}/${{ env.preview-folder }} |
-            | on [`${{ env.preview-repo }}:${{ env.preview-branch }}`](${{ github.server_url }}/${{ env.org }}/${{ env.preview-repo }}/tree/${{ env.preview-branch }}) at ${{ env.datetime }} |
+            | on [`${{ env.preview-repo }}`](${{ github.server_url }}/${{ env.org }}/${{ env.preview-repo }}/tree/${{ env.preview-branch }}/pr-${{ env.pr }}) at ${{ env.datetime }} |
