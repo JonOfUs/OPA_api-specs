@@ -26,10 +26,13 @@ jobs:
     steps:
       # Download PR build artifact from last run
       - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v2
+        with: 
+          run_id: ${{github.event.workflow_run.id }}
           name: pr
-      
+          skip_unpack: true
+          
       # Extract artifact, get PR number and store it in env
       - name: Extract artifact and PR number
         run: |
