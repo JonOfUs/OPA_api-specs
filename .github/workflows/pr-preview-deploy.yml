@@ -26,20 +26,9 @@ jobs:
     steps:
       # Download PR build artifact from last run
       - name: Download artifact
-        id: download-artifact
-        uses: dawidd6/action-download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
-          # Optional, will use specified workflow run
-          # use ${{ github.event.workflow_run.id }} when your action runs in a workflow_run event
-          # and wants to download from the triggering workflow run
           name: pr
-          # Optional, name is treated as a regular expression if set true
-          name_is_regexp: true
-          # Optional, a directory where to extract artifact(s), defaults to the current directory
-          # path: extract_here
-          # Optional, choose to skip unpacking the downloaded artifact(s)
-          # default false
-          skip_unpack: true
       
       # Extract artifact, get PR number and store it in env
       - name: Extract artifact and PR number
