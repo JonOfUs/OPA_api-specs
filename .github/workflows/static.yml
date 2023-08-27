@@ -37,7 +37,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
-      # Build the site with Starlight
       - name: Build html
         run: |
           npm install
