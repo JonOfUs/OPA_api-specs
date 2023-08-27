@@ -46,7 +46,7 @@ jobs:
           # deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }} 
           personal_token: ${{ secrets.PR_DEPLOY_TOKEN }}
           publish_dir: ./dist
-          external_repository: OpenPodcastAPI/pr-previews
+          external_repository: JonOfUs/pr-previews
           destination_dir: pr-${{ env.pr }}/
           keep_files: true
         
