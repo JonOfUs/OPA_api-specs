@@ -11,7 +11,7 @@ export default defineConfig({
 	integrations: [
 		AutoImport({
 			imports: [
-				{ "@astrojs/starlight/components": ["Card", "CardGrid", "LinkCard", "Tabs", "TabItem"] }
+				{ "@astrojs/starlight/components": ["Card", "CardGrid", "LinkCard", "Tabs", "TabItem"] },
 			]
 		}),
 		starlight({
@@ -24,19 +24,27 @@ export default defineConfig({
 				label: "Project overview",
 				link: "overview"
 			}, {
-					label: "Specifications",
-					items: [
-						{
-							label: "Introduction",
-							link: "specs"
-						},
-						{
-							label: "Subscriptions",
-							collapsed: true,
-							autogenerate: {
-								directory: "specs/subscriptions"
-							}
-						}]
+				label: "Specifications",
+				items: [
+					{
+						label: "Introduction",
+						link: "specs"
+					},
+					{
+						label: "Subscriptions",
+						collapsed: true,
+						autogenerate: {
+							directory: "specs/subscriptions"
+						}
+					},
+					{
+						label: "Versioning",
+						collapsed: true,
+						autogenerate: {
+							directory: "specs/versioning"
+						}
+					}
+				]
 				},
 				{
 					label: "API explorer",
